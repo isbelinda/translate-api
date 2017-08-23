@@ -17,7 +17,7 @@ app.post('/api/translate', (req, res) => {
             Status: 200,
             Message: "Success",
             data: {
-                Message: response.text
+                message: response.text
             }
         }
         res.send(send)
