@@ -14,16 +14,19 @@ app.post('/api/translate', (req, res) => {
         //console.log(response.text);
         //console.log(response.from.language.iso);
         let send = {
-            isSuccess: true,
-            message: response.text
+            Status: 200,
+            Message: "Success",
+            Data: {
+                Message: response.text
+            }
         }
         res.send(send)
         
     }).catch(err => {
         let send = {
-            isSuccess: false,
-            error: err,
-            message: ''
+            Status: 400,
+            Message: err,
+            Data: {}
         }
         res.send(send)
         
