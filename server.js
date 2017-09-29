@@ -33,7 +33,7 @@ app.post('/api/translate', (req, res) => {
     });
 })
 
-app.post('/api/GetLanguage',(req, res) => {
+app.post('/api/GetCodeLanguage',(req, res) => {
     let message = req.body.message
     translate(message).then(response => {
         let send = {
