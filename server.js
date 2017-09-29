@@ -11,8 +11,8 @@ app.get('/', (req, res) => {
 app.post('/api/translate', (req, res) => {
     let lang = req.body.lang? req.body.lang : 'en'
     translate(req.body.message, {to: lang}).then(response => {
-        console.log(response.text);
-        console.log(response.from.language.iso);
+        //console.log(response.text);
+        //console.log(response.from.language.iso);
         let send = {
             Status: 200,
             Message: "Success",
