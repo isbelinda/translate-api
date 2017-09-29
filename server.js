@@ -11,8 +11,8 @@ app.get('/', (req, res) => {
 app.post('/api/translate', (req, res) => {
     let lang = req.body.lang? req.body.lang : 'en'
     translate(req.body.message, {to: lang}).then(response => {
-        //console.log(response.text);
-        //console.log(response.from.language.iso);
+        console.log(response.text);
+        console.log(response.from.language.iso);
         let send = {
             Status: 200,
             Message: "Success",
@@ -31,6 +31,27 @@ app.post('/api/translate', (req, res) => {
         res.send(send)
         
     });
+})
+
+app.post('/api/GetLanguage',(req, res) => {
+    let message = req.body.message
+    translate(message).then(response => {
+        let send = {
+            Status: 200,
+            Message: "Success",
+            data: {
+                language: response.from.language.iso
+            }
+        }
+        res.send(send)
+    }).catch(err => {
+        let send = {
+            Status: 400,
+            Message: err,
+            data: {}
+        }
+        res.send(send)
+    })
 })
 
 app.listen(port, () => {
