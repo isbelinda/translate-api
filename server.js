@@ -40,7 +40,7 @@ app.post('/api/GetLanguage',(req, res) => {
             Status: 200,
             Message: "Success",
             data: {
-                language: response.from.language.iso
+                code: response.from.language.iso
             }
         }
         res.send(send)
