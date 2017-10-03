@@ -2,7 +2,9 @@ let app = require('express')();
 const port = process.env.PORT || 3335;
 const bodyParser = require('body-parser')
 const translate = require('google-translate-api');
+const cors = require('cors')
 
+app.use(cors());
 app.use(bodyParser.json())
 app.get('/', (req, res) => {
     res.send('Hi!! Belinda.')
