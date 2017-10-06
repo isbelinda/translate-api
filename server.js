@@ -57,8 +57,9 @@ app.post('/api/GetCodeLanguage',(req, res) => {
     })
 })
 
-app.get('/api/GetApp', (req, res) => {
+app.get('/api/generateQRInstallOrLogIn', (req, res) => {
     md = new mobileDetect(req.headers['user-agent'])
+    console.log(req.query)
     console.log(md.os())
     let url;
     switch(md.os()) {
@@ -78,6 +79,7 @@ app.get('/api/GetApp', (req, res) => {
       );
 
     res.end()
+    //res.send({ path: url, os: md.os() })
 })
 
 app.listen(port, () => {
