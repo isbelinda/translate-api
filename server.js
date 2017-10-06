@@ -59,8 +59,8 @@ app.post('/api/GetCodeLanguage',(req, res) => {
 
 app.get('/api/generateQRInstallOrLogIn', (req, res) => {
     md = new mobileDetect(req.headers['user-agent'])
-    console.log(req.query)
-    console.log(md.os())
+    // console.log(req.query)
+    // console.log(md.os())
     let url;
     switch(md.os()) {
         case 'iOS':
