@@ -3,6 +3,7 @@ const port = process.env.PORT || 3335;
 const bodyParser = require('body-parser')
 const translate = require('google-translate-api');
 const cors = require('cors')
+const mobileDetect = require('mobile-detect')
 
 app.use(cors());
 app.use(bodyParser.json())
@@ -54,6 +55,29 @@ app.post('/api/GetCodeLanguage',(req, res) => {
         }
         res.send(send)
     })
+})
+
+app.get('/api/GetApp', (req, res) => {
+    md = new mobileDetect(req.headers['user-agent'])
+    console.log(md.os())
+    let url;
+    switch(md.os()) {
+        case 'iOS':
+            url = 'https://itunes.apple.com/app/handigo/id1259808783'
+        break
+        case 'AndroidOS':
+            url = 'https://play.google.com/store/apps/details?id=com.socket9.handigo2&hl=th'
+        break
+        default:
+            url = 'http://handigo.run/'
+        break
+    }
+    
+    res.writeHead(301,
+        {Location: url}
+      );
+
+    res.end()
 })
 
 app.listen(port, () => {
